@@ -17,14 +17,21 @@ class App extends React.Component {
 
   handleChange(event) {
     this.setState({
-      topic: event.target.topic,
-      description: event.target.description,
-      collegeName: event.target.collegeName,
-      courseName: event.target.courseName
+      topic: event.target.value,
+      description: event.target.value,
+      collegeName: event.target.value,
+      courseName: event.target.value
     });
   }
 
   handleSubmit(event) {
+    this.setState({
+      topic: "",
+      description: "",
+      collegeName: "",
+      courseName: ""
+    })
+    console.log(this.state);
     event.preventDefault();
   }
 
@@ -43,25 +50,25 @@ class App extends React.Component {
           <div>
             <label>
               Topic
-              <input type="text" name="topic" value={this.state.topic} onChange={this.handleChange} />
+              <input type="text" name="topic" className="topic, inputCSS" value={this.state.topic} onChange={this.handleChange} />
             </label>
           </div>
           <div>
             <label>
               Description 
-              <input type="text" name="description" value={this.state.description} onChange={this.handleChange} />
+              <input type="text" name="description" className="description, inputCSS" value={this.state.description} onChange={this.handleChange} />
             </label>
           </div>
           <div>
             <label>
               College Name 
-              <input type="text" name="collegeName" value={this.state.collegeName} onChange={this.handleChange} />
+              <input type="text" name="collegeName" className="collegeName, inputCSS" value={this.state.collegeName} onChange={this.handleChange} />
             </label>
           </div>
           <div>
             <label>
               Course Name  
-              <input type="text" name="courseName" value={this.state.courseName} onChange={this.handleChange} />
+              <input type="text" name="courseName" className="courseName, inputCSS" value={this.state.courseName} onChange={this.handleChange} />
             </label>
           </div>
           <div className="submit">

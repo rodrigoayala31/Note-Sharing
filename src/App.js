@@ -50,7 +50,7 @@ class App extends React.Component {
             <label for="avatar" className="chooseFile">
               Choose an image or a PDF file:
             </label>
-            <input type="file" name="noteFile" accept="image/*, .pdf" className="inputFile"/>
+            <input type="file" name="noteFile" accept="image/*, .pdf" className="inputFile" />
           </div>
           <div>
             <label>

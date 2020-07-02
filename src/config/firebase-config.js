@@ -1,10 +1,9 @@
 //The core Firebase JS SDK is always required and must be listed first
-importScripts("https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js");
-
+import firebase from "firebase";
 //TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries 
 
 // Your Firebase configuration
-var firebaseConfig = {
+const config = {
     apiKey: "AIzaSyBORqWbbMJocP5u5rNNAvXqW2bPjQygKK4",
     authDomain: "note-sharing-app-1f607.firebaseapp.com",
     databaseURL: "https://note-sharing-app-1f607.firebaseio.com",
@@ -16,6 +15,7 @@ var firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(config);
 firebase.analytics();
 
+export default firebase;

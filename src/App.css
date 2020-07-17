@@ -25,42 +25,17 @@ input {
   border-radius: 5px;
 }
 
+.go-sign-up {
+  text-decoration: none;
+  color: #0fb4dd;
+}
+
 .inputCSS {
   margin: 10px;
   padding: 10px 10px;
   border-radius: 5px;
   outline: none;
   border: 1px solid #cfcfcf;
-}
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 .wrapper {
@@ -70,7 +45,7 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #258ea6;
+  background-color: #8ac1d6;
 }
 
 .form-wrapper {
@@ -96,7 +71,7 @@ input {
 }
 
 .submit button {
-  background-color: #47a38a;
+  background-color: #A8D0E6;
   color: #fff;
   border: 2px solid #fff;
   width: 100%;
@@ -109,9 +84,9 @@ input {
 }
 
 .submit button:hover {
-  color: #519e8a;
+  color: rgb(19, 187, 253);
   background-color: #fff;
-  border: 2px solid #519e8a;
+  border: 2px solid rgb(19, 187, 253);
 }
 
 .submit small {

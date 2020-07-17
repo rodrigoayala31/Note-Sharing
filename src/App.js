@@ -1,10 +1,12 @@
-import React from 'react';
 import './App.css';
-import firebase from "./config/firebase-config";
+import { db } from "./config/firebase-config";
+import React from "react";
+import firebase from "./config/firebase-config"
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.inputRef = React.createRef();
     this.state = {
       topic: "",
       description: "",
@@ -24,33 +26,51 @@ class App extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const db = firebase.firestore();
-    db.collection("notes").add({
-      topic: this.state.topic,
-      description: this.state.description,
-      collegeName: this.state.collegeName,
-      courseName: this.state.courseName,
-    })
-    this.setState({
-      topic: "",
-      description: "",
-      collegeName: "",
-      courseName: "",
-    })
-    event.preventDefault();
+    const fileRef = this.inputRef.current.files[0];
+    var date = new Date();
+    var time = date.getTime();
+    var storageRef = firebase.storage().ref();
+    const fileName = fileRef.name + time;
+    var uploadTask = storageRef.child('notes/' + fileName).put(fileRef);
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+      (snapshot) => {
+        //progress function
+      }, 
+      (error) => {
+        console.log(error);
+      }, 
+    () => {
+      uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+        console.log('File available at', downloadURL);
+        db.collection("notes").add({
+          topic: this.state.topic,
+          description: this.state.description,
+          collegeName: this.state.collegeName,
+          courseName: this.state.courseName,
+          url: downloadURL,
+        })
+        this.setState({
+          topic: "",
+          description: "",
+          collegeName: "",
+          courseName: "",
+       })
+      });
+    });
   }
+
 
   render() {
     return (
       <div className="wrapper">
         <div className="form-wrapper">
-        <h1>Share Notes</h1>
+        <h1>Add a Note</h1>
         <form onSubmit={this.handleSubmit}>
           <div>
             <label for="avatar" className="chooseFile">
               Choose an image or a PDF file:
             </label>
-            <input type="file" name="noteFile" accept="image/*, .pdf" className="inputFile" />
+            <input type="file" name="noteFile" accept="image/*, .pdf" className="inputFile" ref={this.inputRef} />
           </div>
           <div>
             <label>
@@ -77,7 +97,7 @@ class App extends React.Component {
             </label>
           </div>
           <div className="submit">
-            <button type="submit">Submit</button>
+            <button type="submit">Add</button>
           </div>
         </form>
         </div>

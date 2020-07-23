@@ -1,9 +1,9 @@
-import './App.css';
+import './Add.css';
 import { db } from "./config/firebase-config";
 import React from "react";
 import firebase from "./config/firebase-config"
 
-class App extends React.Component {
+class Add extends React.Component {
   constructor(props) {
     super(props);
     this.inputRef = React.createRef();
@@ -62,42 +62,28 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="wrapper">
-        <div className="form-wrapper">
+      <div className="add-page">
+        <div className="add-form-wrapper">
         <h1>Add a Note</h1>
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label for="avatar" className="chooseFile">
-              Choose an image or a PDF file:
-            </label>
+            <p>Select and image or a PDF</p>
             <input type="file" name="noteFile" accept="image/*, .pdf" className="inputFile" ref={this.inputRef} />
           </div>
           <div>
-            <label>
-              Topic
-              <input type="text" name="topic" className="topic, inputCSS" value={this.state.topic} onChange={event => this.handleChange(event, "topic")} />
-            </label>
+            <input type="text" name="topic" placeholder='Topic' className="topic, input-add" value={this.state.topic} onChange={event => this.handleChange(event, "topic")} />
           </div>
           <div>
-            <label>
-              Description 
-              <input type="text" name="description" className="description, inputCSS" value={this.state.description} onChange={event => this.handleChange(event, "description")} />
-            </label>
+            <input type="text" name="collegeName" placeholder='College Name' className="collegeName, input-add" value={this.state.collegeName} onChange={event => this.handleChange(event, "collegeName")} />
+          </div>
+          <div> 
+            <input type="text" name="courseName" placeholder='Course Name' className="courseName, input-add" value={this.state.courseName} onChange={event => this.handleChange(event, "courseName")} />
           </div>
           <div>
-            <label>
-              College Name 
-              <input type="text" name="collegeName" className="collegeName, inputCSS" value={this.state.collegeName} onChange={event => this.handleChange(event, "collegeName")} />
-            </label>
-          </div>
-          <div>
-            <label>
-              Course Name  
-              <input type="text" name="courseName" className="courseName, inputCSS" value={this.state.courseName} onChange={event => this.handleChange(event, "courseName")} />
-            </label>
+            <textarea className='description, add-textarea' placeholder='Add a brief description of the note' value={this.state.description} onChange={event => this.handleChange(event, "description")}></textarea>
           </div>
           <div className="submit">
-            <button type="submit">Add</button>
+            <button type="submit">Add Your Note</button>
           </div>
         </form>
         </div>
@@ -106,4 +92,4 @@ class App extends React.Component {
   }
 }
   
-  export default App;
+  export default Add;

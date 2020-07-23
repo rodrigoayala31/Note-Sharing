@@ -1,5 +1,6 @@
 import React from 'react';
 import { db } from "./config/firebase-config";
+import './Dashboard.css';
 
 class Dashboard extends React.Component{
     constructor(props){
@@ -20,18 +21,18 @@ class Dashboard extends React.Component{
 
     render() {
         return (
-            <div className='Dashboard'>
+            <div className='dashboard'>
                 <h1>Notes</h1>
                 {
                     this.state.notes && 
                     this.state.notes.map( note => {
                         return (
-                            <div>
+                            <div className='content'>
                                 <p>{note.collegeName}</p>
                                 <p>{note.courseName}</p>
                                 <p>{note.description}</p>
                                 <p>{note.topic}</p>
-                                <img src={note.url} alt='Uploaded Images' />
+                                <embed src={note.url} width= "500" height= "600"></embed>
                             </div>
                         )
                     })

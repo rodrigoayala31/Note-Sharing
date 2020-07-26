@@ -12,6 +12,7 @@ class Add extends React.Component {
       description: "",
       collegeName: "",
       courseName: "",
+      pdfType: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -26,7 +27,7 @@ class Add extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const fileRef = this.inputRef.current.files[0];
+    const fileRef = this.inputRef.current.files[0]; 
     var date = new Date();
     var time = date.getTime();
     var storageRef = firebase.storage().ref();
@@ -42,12 +43,17 @@ class Add extends React.Component {
     () => {
       uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
         console.log('File available at', downloadURL);
+        var pdfType = null;
+        if (fileRef.name.indexOf("pdf") !== -1) {
+          pdfType = true;
+        }
         db.collection("notes").add({
           topic: this.state.topic,
           description: this.state.description,
           collegeName: this.state.collegeName,
           courseName: this.state.courseName,
           url: downloadURL,
+          pdfType: pdfType,
         })
         this.setState({
           topic: "",

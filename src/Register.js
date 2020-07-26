@@ -1,6 +1,7 @@
 import React from 'react';
 import './Register.css'
 import firebase from './config/firebase-config'
+// import { Redirect } from 'react-router-dom';
 
 class Register extends React.Component {
   constructor(props) {
@@ -32,6 +33,11 @@ class Register extends React.Component {
   }
 
   render() {
+
+    // if (this.props.loggedIn) {
+    //   return <Redirect to='/Dashboard' />
+    // }
+
     return (
       <div className="sign-up-page">
         <div className="sign-up-wrapper">
@@ -43,7 +49,7 @@ class Register extends React.Component {
             <input type="text" placeholder="College Name"  value={this.state.collegeName} onChange={event => this.handleChange(event, "collegeName")}/>
             <input type="password" placeholder="Password" value={this.state.password} onChange={event => this.handleChange(event, "password")}/>
             <button type='submit'>Sign Up</button>
-            <p className="message">Already have an account? <a href="/Login">Login</a></p>
+            <p className="message">Already have an account? <a href="/">Login</a></p>
           </form>
         </div>
       </div>

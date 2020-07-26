@@ -1,6 +1,7 @@
 import React from 'react';
 import { db } from "./config/firebase-config";
 import './Dashboard.css';
+// import { Redirect } from 'react-router-dom';
 
 class Dashboard extends React.Component{
     constructor(props){
@@ -20,21 +21,38 @@ class Dashboard extends React.Component{
     }
 
     render() {
+
+        // if (!this.props.loggedIn) {
+        //     return <Redirect to='/' />
+        //   }
+
         return (
             <div className='dashboard'>
                 <h1>Notes</h1>
                 {
                     this.state.notes && 
                     this.state.notes.map( note => {
-                        return (
-                            <div className='content'>
-                                <p>{note.collegeName}</p>
-                                <p>{note.courseName}</p>
-                                <p>{note.description}</p>
-                                <p>{note.topic}</p>
-                                <embed src={note.url} width= "500" height= "600"></embed>
-                            </div>
-                        )
+                        if (note.pdfType === true){
+                            return (
+                                <div className='content'>
+                                    <p>{note.collegeName}</p>
+                                    <p>{note.courseName}</p>
+                                    <p>{note.description}</p>
+                                    <p>{note.topic}</p>
+                                    <embed src={note.url} width= "500" height= "600"></embed>
+                                </div>
+                            )
+                        } else {
+                            return (
+                                <div className='content'>
+                                    <p>{note.collegeName}</p>
+                                    <p>{note.courseName}</p>
+                                    <p>{note.description}</p>
+                                    <p>{note.topic}</p>
+                                    <img src={note.url} alt='note' />
+                                </div>
+                            )
+                        }
                     })
                 }
             </div>

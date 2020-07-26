@@ -1,6 +1,7 @@
 import React from "react";
 import firebase from './config/firebase-config'
 import './Login.css'
+// import { Redirect } from "react-router-dom";
 
 class Login extends React.Component {
   constructor(props) {
@@ -24,14 +25,17 @@ class Login extends React.Component {
     event.preventDefault();
     const email = this.state.email;
     const password = this.state.password
-    firebase.auth().signInWithEmailAndPassword(email, password).then( () => {
-      this.props.history.push('/');
-    }).catch(function(error) {
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
       alert(error);
     })
   }
 
   render() {
+
+    // if (this.props.loggedIn) {
+    //   return <Redirect to='/Dashboard' />
+    // }
+
     return (
       <div className="login-page">
         <div className="login-form-wrapper">
